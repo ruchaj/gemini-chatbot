@@ -60,8 +60,8 @@ function appendMessage(sender,message){
 // Calls the Google Gemini API, sending the message, and calls the function to append the repsonse
 async function getAIReponse(userMessage) {
 
-    // Step () of README: Insert Gemini API here.
-    const API_KEY = "AIzaSyCcZLOm717vluvtscs-8hrihEBKWM7_eqo";
+    // Insert Gemini API key here.
+    const API_KEY = "";
 
     // URL for the API - uses above API key
     const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
@@ -97,8 +97,8 @@ async function getAIReponse(userMessage) {
         // Logs any other errors and asks user to try again
         console.error("Error:", error);
         appendMessage(
-        "bot",
-        "Sorry, I'm having trouble responding. Please try again."
+            "bot",
+            "Sorry, I'm having trouble responding. Please try again."
         );
     }
 
