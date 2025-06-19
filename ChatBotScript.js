@@ -60,13 +60,14 @@ function appendMessage(sender,message){
 // Calls the Google Gemini API, sending the message, and calls the function to append the repsonse
 async function getAIReponse(userMessage) {
 
-    // Step () of README: Insert Gemini API here, or use given API in ReadME.
-    const API_KEY = "";
+    // Step () of README: Insert Gemini API here.
+    const API_KEY = "AIzaSyCcZLOm717vluvtscs-8hrihEBKWM7_eqo";
 
-    //
+    // URL for the API - uses above API key
     const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
 
     try {
+        // Sends a post request to the Gemini API with the User's message
         const response = await fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -79,15 +80,21 @@ async function getAIReponse(userMessage) {
         }),
         });
 
+        // Assigns response to a data variable
         const data = await response.json();
 
+        // Throws an error if there is no connection from the API
         if (!data.candidates || !data.candidates.length) {
-        throw new Error("No response from Gemini API");
+            throw new Error("No response from Gemini API");
         }
 
+        // Checks if a message was returned, otherwise returns "No Response"
         const botMessage = data?.candidates?.[0]?.content?.parts?.[0]?.text || "No response.";
+
+        // Appends message to chat history
         appendMessage("bot", botMessage);
     } catch (error) {
+        // Logs any other errors and asks user to try again
         console.error("Error:", error);
         appendMessage(
         "bot",
