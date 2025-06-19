@@ -1,0 +1,106 @@
+#container {
+  max-width: 60rem;      
+  height: 80vh;         
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+#header {
+  background-color: teal;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#header span {
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+#close-btn {
+  color: white;
+  font-weight: bold;
+  font-size: 1.25rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+#body {
+  padding: 1rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+#messages {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.message {
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  max-width: 75%;
+  word-wrap: break-word;
+}
+
+.user-message {
+  background-color: white;
+  align-self: flex-end;
+}
+
+.ai-message {
+  background-color: white;
+  color:cadetblue;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  align-self: flex-start;
+}
+
+#input-container {
+  display: flex;
+  border-top: 1px solid white;
+}
+
+#user-input {
+  flex: 1;
+  padding: 1rem;
+  font-size: 1rem;
+  border: 1px solid black;
+  border-radius: 0.375rem;
+  outline: black;
+}
+
+#submit-btn {
+  background-color: blue;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  border: none;
+  cursor: pointer;
+}
+
+#clearchat-btn {
+  background-color: red;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  border: none;
+  cursor: pointer;
+}
+
+#submit-btn:hover {
+  background-color: #0b5ed7;
+}
+
+#clearchat-btn:hover{
+    background-color: palevioletred;
+}

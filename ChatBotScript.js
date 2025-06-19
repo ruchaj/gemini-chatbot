@@ -59,7 +59,9 @@ function appendMessage(sender,message){
 
 // Calls the Google Gemini API, sending the message, and calls the function to append the repsonse
 async function getAIReponse(userMessage) {
-    const API_KEY = "AIzaSyBXyWCqJtVKveLkJH1CFtbmByc2zM0EtXw";
+
+    // Step () of README: Insert Gemini API here, or use given API in ReadME.
+    const API_KEY = "";
 
     //
     const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
