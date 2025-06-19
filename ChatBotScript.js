@@ -73,7 +73,7 @@ function appendMessage(sender,message){
 async function getAIReponse(userMessage) {
 
     // Insert Gemini API key here.
-    const API_KEY = "AIzaSyCcZLOm717vluvtscs-8hrihEBKWM7_eqo";
+    const API_KEY = "";
 
     // URL for the API - uses above API key
     const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
