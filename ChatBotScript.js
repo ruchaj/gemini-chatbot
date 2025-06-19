@@ -38,7 +38,7 @@ function sendMessage(){
     }
 }
 
-// Formats markdown styling of AI message into its text style equivalent
+// This function formats markdown styling of AI message into its text style equivalent
 function formatMessage(text){
 
     // Replaces **text** with bold text
@@ -49,10 +49,11 @@ function formatMessage(text){
 
     return text;
 }
-// Gets the message and the sender type, then appends the message to the appropriate side of the message box
+
+// This function takes in the message and the sender type, then appends the message to the appropriate side of the message box
 function appendMessage(sender,message){
 
-    //gets the messageContainer and creates a div for the individual element
+    // Gets the messageContainer and creates a div for the individual element
     const messageContainer = document.getElementById("messages");
     const messageElement = document.createElement("div");
 
@@ -66,7 +67,6 @@ function appendMessage(sender,message){
     
     // Adds it to the top of the body
     messageContainer.scrollTop = messageContainer.scrollHeight;
-    return messageElement;
 }
 
 // Calls the Google Gemini API, sending the message, and calls the function to append the repsonse
