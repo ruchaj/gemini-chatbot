@@ -38,6 +38,17 @@ function sendMessage(){
     }
 }
 
+// Formats markdown styling of AI message into its text style equivalent
+function formatMessage(text){
+
+    // Replaces **text** with bold text
+    text = text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+
+    // Replaces _text_ to italicized text
+    text = text.replace(/_(.*?)_/g, "<em>$1</em>");
+
+    return text;
+}
 // Gets the message and the sender type, then appends the message to the appropriate side of the message box
 function appendMessage(sender,message){
 
@@ -50,21 +61,31 @@ function appendMessage(sender,message){
     messageElement.classList.add(sender === "user" ? "user-message" : "ai-message");
 
     // Includes the message in the messageElement and adds it to the history
-    messageElement.textContent = message;
+    messageElement.innerHTML = formatMessage(message);
     messageContainer.appendChild(messageElement);
-
+    
     // Adds it to the top of the body
     messageContainer.scrollTop = messageContainer.scrollHeight;
+    return messageElement;
 }
 
 // Calls the Google Gemini API, sending the message, and calls the function to append the repsonse
 async function getAIReponse(userMessage) {
 
     // Insert Gemini API key here.
-    const API_KEY = "";
+    const API_KEY = "AIzaSyCcZLOm717vluvtscs-8hrihEBKWM7_eqo";
 
     // URL for the API - uses above API key
     const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
+
+    // Variable to indicate if a loading message is needed or not
+    let loadingShown = false;
+
+    // Sets a minimum time for loading screen to appear, until API retieves the response from the AI
+    const loadingTimeout = setTimeout(() => {
+        loadingShown = true;
+        loadingMessageElement = appendMessage("bot", "Gemini is thinking of a response...");
+    }, 300);
 
     try {
         // Sends a post request to the Gemini API with the User's message
@@ -83,6 +104,14 @@ async function getAIReponse(userMessage) {
         // Assigns response to a data variable
         const data = await response.json();
 
+        // Clears the timeout 
+        clearTimeout(loadingTimeout);
+
+        // Removes the loading message
+        if(loadingShown && loadingMessageElement){
+            loadingMessageElement.remove();
+        }
+
         // Throws an error if there is no connection from the API
         if (!data.candidates || !data.candidates.length) {
             throw new Error("No response from Gemini API");
@@ -96,12 +125,19 @@ async function getAIReponse(userMessage) {
     } catch (error) {
         // Logs any other errors and asks user to try again
         console.error("Error:", error);
+        
+        // Clears the timeout 
+        clearTimeout(loadingTimeout);
+
+        // Removes the loading message
+        if(loadingShown && loadingMessageElement){
+            loadingMessageElement.remove();
+        }
+
+        // Appends message that bot isn't able to respond to chat history
         appendMessage(
             "bot",
             "Sorry, I'm having trouble responding. Please try again."
         );
     }
-
-
-
 }
