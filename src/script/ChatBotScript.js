@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded",function(){
 
 // This function creates a variable to hold the user-input, calls the function to add it to the message body and clears the prompt box, and calls for the AI response
 function sendMessage(){
-
     // stores userInput 
     const userInput = document.getElementById("user-input").value.trim();
 
