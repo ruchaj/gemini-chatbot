@@ -89,15 +89,15 @@ async function getAIReponse(userMessage) {
     try {
         // Sends a post request to the Gemini API with the User's message
         const response = await fetch(API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            contents: [
-            {
-                parts: [{ text: userMessage }],
-            },
-            ],
-        }),
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                contents: [
+                {
+                    parts: [{ text: userMessage }],
+                },
+                ],
+            }),
         });
 
         // Assigns response to a data variable
